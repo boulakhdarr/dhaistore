@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free online tools for YouTube thumbnails, internet connection testing, kWh energy costs and chmod permissions.">
+  <meta name="keywords" content="YouTube thumbnails, YouTube thumbnail downloader, thumbnail generator, kWh calculator, electricity cost calculator, internet speed test, connection stability test, chmod generator, Unix permissions">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="dhai.store">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="dhai.store - Free Online Utility Tools">
+  <meta property="og:description" content="Get YouTube thumbnails, test your connection, calculate energy costs and generate chmod permissions.">
+  <meta property="og:site_name" content="dhai.store">
+  <meta name="twitter:card" content="summary">
+  <title>dhai.store - YouTube Thumbnails</title>
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"dhai.store","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"Free online tools for YouTube thumbnails, connection stability, energy consumption and Unix chmod permissions.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["YouTube thumbnail downloader","Internet connection stability test","kWh calculator","chmod permission generator"]}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="dhai.store home">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span>dhai.store</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#how">How it works</a>
+        <a href="#formats">Formats</a>
+        <a href="#ping">Test my connection</a>
+        <a href="#kwh">Calculate kWh</a>
+        <a href="#chmod">Generate chmod</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="menu-button" type="button" aria-label="Ouvrir le menu"><i></i><i></i></button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> YouTube thumbnails, simply</p>
+          <h1>A good image<br><em>changes everything.</em></h1>
+          <p class="hero-description">Paste a video link and instantly get its thumbnails in every available resolution.</p>
+          <form class="url-form" id="thumbnail-form">
+            <div class="input-wrap">
+              <span class="link-icon" aria-hidden="true">↗</span>
+              <input id="youtube-url" type="url" placeholder="https://youtube.com/watch?v=..." autocomplete="url" required>
+              <button class="clear-button" type="button" id="clear-button" aria-label="Clear link">×</button>
+            </div>
+            <button class="primary-button" type="submit">Get thumbnails <span>→</span></button>
+          </form>
+          <p class="privacy-note"><span aria-hidden="true">✦</span> No sign-up. No files uploaded.</p>
+          <p class="form-message" id="form-message" role="status"></p>
+        </div>
+          <div class="hero-visual" aria-label="Video thumbnail preview">
+          <div class="visual-tag tag-top">YOUR VIDEO <span>↗</span></div>
+          <div class="thumbnail-stack">
+            <div class="stack-card stack-back"></div>
+            <div class="stack-card stack-middle"></div>
+            <div class="featured-thumbnail">
+              <div class="thumbnail-noise"></div>
+              <div class="featured-content">
+                <span class="play-badge">▶</span>
+                <p>CREATE<br><strong>MORE</strong></p>
+                <small>DHAI.STORE / 2024</small>
+              </div>
+              <div class="featured-corner">HD</div>
+            </div>
+          </div>
+          <div class="visual-tag tag-bottom"><span class="tag-line"></span> SIMPLE. FAST. USEFUL.</div>
+        </div>
+      </section>
+
+      <section class="stats-strip" aria-label="Service information">
+        <div><strong>8</strong><span>image formats<br>to explore</span></div>
+        <div><strong>0€</strong><span>free and<br>no sign-up</span></div>
+        <div><strong>10s</strong><span>to find<br>the right image</span></div>
+        <div class="stats-aside"><span class="live-dot"></span> Works with<br>all public videos</div>
+      </section>
+
+      <aside class="ad-slot" data-ad-client="" aria-label="Advertisement"><span>ADVERTISEMENT</span></aside>
+
+      <section class="ping-section" id="ping">
+        <div class="ping-intro"><p class="eyebrow"><span class="eyebrow-dot"></span> New: connection test</p><h2>Can your connection<br>keep <em>the pace?</em></h2><p>Measure your Internet stability directly in your browser. Useful before an online game, a call or a live stream.</p><button class="ping-button" id="ping-toggle" type="button"><span class="ping-button-icon">▶</span> Start test</button></div>
+        <div class="ping-panel" aria-live="polite">
+          <div class="ping-panel-top"><span class="panel-label"><span class="live-dot"></span> HTTP TEST</span><span id="ping-state">READY TO MEASURE</span></div>
+          <div class="ping-reading"><strong id="ping-value">—</strong><span>ms</span></div>
+          <div class="ping-chart" id="ping-chart" aria-label="Response time history"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="ping-panel-bottom"><span>CURRENT LATENCY</span><span id="ping-quality">Waiting</span></div>
+        </div>
+      </section>
+
+      <section class="ping-info"><div><p class="eyebrow">Good to know</p><h2>An indicator,<br><em>not a verdict.</em></h2></div><div class="ping-info-copy"><p>The displayed time is indicative: this test uses HTTP(S), like a web page, rather than the system <code>ping</code> command.</p><p>A low, steady result is usually a good sign. Micro-breaks appear as missing measurements.</p></div></section>
+
+      <section class="kwh-section" id="kwh">
+        <div class="kwh-heading"><p class="eyebrow"><span class="eyebrow-dot"></span> Energy calculator</p><h2>What your<br><em>device costs.</em></h2><p>Estimate its energy consumption and running cost. A small measurement can make a real difference to your bill.</p></div>
+        <div class="kwh-calculator">
+          <div class="kwh-fields">
+            <label>Power <span>WATTS (W)</span><input id="power-input" type="number" min="0" step="any" value="40" inputmode="decimal"></label>
+            <label>Usage duration <span>EACH TIME</span><div class="duration-row"><input id="duration-input" type="number" min="0" step="any" value="2" inputmode="decimal"><select id="duration-unit" aria-label="Duration unit"><option value="hour">hour(s)</option><option value="minute">minute(s)</option></select></div></label>
+            <label>Frequency <span>OVER</span><div class="duration-row"><input id="days-input" type="number" min="0" step="any" value="7" inputmode="decimal"><select id="frequency-unit" aria-label="Frequency unit"><option value="day">day(s)</option><option value="week">week(s)</option><option value="month">month(s)</option></select></div></label>
+            <label>kWh price <span>OPTIONAL, NO CURRENCY</span><input id="price-input" type="number" min="0" step="any" placeholder="e.g. 0.25" inputmode="decimal"></label>
+          </div>
+          <div class="kwh-output"><div class="kwh-output-label">ESTIMATED CONSUMPTION</div><div class="kwh-main-value"><strong id="kwh-value">0,56</strong><span>kWh</span></div><div class="kwh-divider"></div><div class="kwh-cost-row"><span>Estimated cost</span><strong id="cost-value">—</strong></div><button class="calculate-button" id="calculate-kwh" type="button">Calculate <span>→</span></button></div>
+        </div>
+        <p class="kwh-formula">Power (W) ÷ 1000 × usage duration = consumption in kWh</p>
+      </section>
+
+      <section class="chmod-section" id="chmod">
+        <div class="chmod-heading"><p class="eyebrow"><span class="eyebrow-dot"></span> Unix tool</p><h2>Rights in<br><em>the right place.</em></h2><p>Build a <code>chmod</code> permission without memorizing every number. Choose the access rights and the command builds itself.</p></div>
+        <div class="chmod-tool">
+          <div class="permission-grid">
+            <div class="permission-header"><span></span><strong>READ</strong><strong>WRITE</strong><strong>EXEC</strong></div>
+            <div class="permission-row"><strong>Owner</strong><label><input class="permission-box" data-group="owner" data-value="4" type="checkbox" checked><span>r</span></label><label><input class="permission-box" data-group="owner" data-value="2" type="checkbox" checked><span>w</span></label><label><input class="permission-box" data-group="owner" data-value="1" type="checkbox" checked><span>x</span></label></div>
+            <div class="permission-row"><strong>Group</strong><label><input class="permission-box" data-group="group" data-value="4" type="checkbox" checked><span>r</span></label><label><input class="permission-box" data-group="group" data-value="2" type="checkbox"><span>w</span></label><label><input class="permission-box" data-group="group" data-value="1" type="checkbox" checked><span>x</span></label></div>
+            <div class="permission-row"><strong>Others</strong><label><input class="permission-box" data-group="others" data-value="4" type="checkbox" checked><span>r</span></label><label><input class="permission-box" data-group="others" data-value="2" type="checkbox"><span>w</span></label><label><input class="permission-box" data-group="others" data-value="1" type="checkbox" checked><span>x</span></label></div>
+          </div>
+          <div class="chmod-output"><div class="chmod-output-label">CURRENT PERMISSION</div><div class="chmod-values"><strong id="octal-value">755</strong><span id="symbolic-value">rwxr-xr-x</span></div><div class="chmod-command"><code id="chmod-command">chmod 755 path/to/file</code><button id="copy-chmod" type="button" aria-label="Copy command">Copy</button></div><p id="copy-status" role="status"></p></div>
+        </div>
+      </section>
+
+      <section class="chmod-info"><div><p class="eyebrow">Understanding chmod</p><h2>Read, write,<br><em>execute.</em></h2></div><div class="chmod-info-copy"><p><strong>r</strong> reads content, <strong>w</strong> edits it and <strong>x</strong> allows execution or entering a folder.</p><p>The <code>755</code> notation gives the owner every right, then read and execute rights to the group and others.</p></div></section>
+
+      <section class="result-section" id="results" hidden>
+        <div class="section-heading"><div><p class="eyebrow">Results</p><h2>Choose your <em>format.</em></h2></div><p id="video-id-label"></p></div>
+        <p class="results-status" id="results-status">Looking for available images...</p>
+        <div class="results-grid" id="results-grid"></div>
+      </section>
+
+      <section class="how-section" id="how">
+        <div class="section-heading"><div><p class="eyebrow">The principle</p><h2>Three steps.<br><em>Zero friction.</em></h2></div><p class="section-intro">No account, no detours. dhai.store connects you with the image you need.</p></div>
+        <div class="steps-grid">
+          <article class="step"><span class="step-number">01</span><div class="step-icon">↗</div><h3>Paste your link</h3><p>A classic, short or embedded YouTube URL. It all works.</p></article>
+          <article class="step step-highlight"><span class="step-number">02</span><div class="step-icon">✦</div><h3>Discover the images</h3><p>We find the versions generated by YouTube for you.</p></article>
+          <article class="step"><span class="step-number">03</span><div class="step-icon">↓</div><h3>Download</h3><p>Preview, then save the resolution that suits you.</p></article>
+        </div>
+      </section>
+
+      <section class="formats-section" id="formats">
+        <div class="formats-copy"><p class="eyebrow">For every use</p><h2>From preview<br>to the <em>big screen.</em></h2><p>From a quick share to a high-definition visual, choose the image that fits your project.</p></div>
+        <div class="format-list"><div><span>Small preview</span><strong>120 × 90 <small>px</small></strong></div><div><span>Social media</span><strong>480 × 360 <small>px</small></strong></div><div><span>High definition</span><strong>1280 × 720 <small>px</small></strong></div></div>
+      </section>
+
+      <section class="faq-section" id="faq"><div><p class="eyebrow">Frequently asked questions</p><h2>Everything is <em>clear.</em></h2></div><div class="faq-list"><details open><summary>Is it really free? <span>+</span></summary><p>Yes. dhai.store is free and requires no sign-up.</p></details><details><summary>Which videos are compatible? <span>+</span></summary><p>Public YouTube videos that have at least one thumbnail.</p></details><details><summary>Where is my data stored? <span>+</span></summary><p>The link is processed in your browser. dhai.store does not store it.</p></details></div></section>
+    </main>
+
+    <footer><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><span></span></span><span>dhai.store</span></a><span>Made for good images.</span><span>© 2024 dhai.store</span></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
