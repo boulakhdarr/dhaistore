@@ -1,106 +1,28 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Click Tracking</title>
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 60px auto;
-  padding: 20px;
-  max-width: 450px;
-}
-button {
-  padding: 13px 35px;
-  cursor: pointer;
-  border: none;
-  background: #1877f2;
-  color: white;
-  border-radius: 5px;
-  font-size: 16px;
-}
-button:disabled {
-  opacity: 0.6;
-}
-#status {
-  margin-top: 20px;
-}
-</style>
 </head>
-
 <body>
 
-<h2>Continue to Offer</h2>
-
-<p>Do you agree to register this click interaction?</p>
-
-<button id="agree">Continue</button>
-
-<p id="status"></p>
-
 <script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyq-8bDRatQfxFqE0fI1C3Q-ni-gMXfGdOo8ydMxS6KywYe5ZXvVqXulST4-hSsF9izVA/exec";
 
-const API = "https://script.google.com/macros/s/AKfycbxInU4ZzIdNnMPhOXZYI5OzeP4o8itjKFcVL5RR20zeZtgZkC3hEPp4C89fuMEzQkTi1Q/exec";
+const params = new URLSearchParams(window.location.search);
 
-const DESTINATION = "https://example.com";
+const email = params.get("email") || "";
+const page = params.get("page") || "/";
+const status = params.get("status") || "Pending";
 
-const button = document.getElementById("agree");
-const status = document.getElementById("status");
+const url = SCRIPT_URL +
+    "?email=" + encodeURIComponent(email) +
+    "&page=" + encodeURIComponent(page) +
+    "&status=" + encodeURIComponent(status);
 
-button.addEventListener("click", async function() {
-
-  const params = new URLSearchParams(location.search);
-
-  const email = params.get("email");
-  const campaign = params.get("campaign") || "Campaign01";
-
-  if (!email) {
-    status.textContent = "Email missing";
-    return;
-  }
-
-  const url = new URL(API);
-
-  url.searchParams.set("email", email);
-  url.searchParams.set("campaign", campaign);
-  url.searchParams.set("event", "Click");
-  url.searchParams.set("page", location.pathname);
-
-  button.disabled = true;
-  status.textContent = "Submitting...";
-
-  try {
-
-    const response = await fetch(url.toString());
-
-    const result = await response.text();
-
-    if (result.trim() === "SUCCESS") {
-
-      status.textContent = "Click registered successfully!";
-
-      window.location.href = DESTINATION;
-
-    } else {
-
-      status.textContent = "Error: " + result;
-      button.disabled = false;
-
-    }
-
-  } catch (error) {
-
-    status.textContent = "Connection error: " + error.message;
-    button.disabled = false;
-
-  }
-
-});
-
+const img = new Image();
+img.src = url;
 </script>
 
 </body>
