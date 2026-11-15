@@ -1,49 +1,47 @@
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Email Campaign</title>
+<title>Campaign Tracking</title>
 </head>
 <body>
 
-<h2>Email Campaign</h2>
+<h2>Campaign</h2>
+<p>Allow measurement of this campaign interaction?</p>
 
-<p>Allow campaign interaction measurement?</p>
-
-<button onclick="recordOpen()">Continue</button>
-
+<button id="continue">Continue</button>
 <p id="status"></p>
 
 <script>
-const endpoint = "https://script.google.com/macros/s/AKfycbz8KSXL4Y5xHZyTPF7oMhjvFl9CU6fRnC6eZZwDVozbV5iLYRM0xnTqZk6tb9G3V03cmg/exec";
+const ENDPOINT = "YOUR_APPS_SCRIPT_URL";
 
-async function recordOpen() {
+document.getElementById("continue").onclick = function () {
+
     const params = new URLSearchParams(location.search);
     const email = params.get("email");
     const campaign = params.get("campaign") || "Campaign01";
 
     if (!email) {
         document.getElementById("status").textContent =
-            "Email parameter missing";
+            "Email missing";
         return;
     }
 
-    const url = endpoint +
+    const url = ENDPOINT +
         "?email=" + encodeURIComponent(email) +
         "&campaign=" + encodeURIComponent(campaign);
 
-    try {
-        const response = await fetch(url);
-        document.getElementById("status").textContent =
-            "Measurement event submitted.";
-    } catch (error) {
-        document.getElementById("status").textContent =
-            "Could not submit event.";
-    }
-}
+    fetch(url, { mode: "no-cors" })
+        .then(() => {
+            document.getElementById("status").textContent =
+                "Request submitted";
+        })
+        .catch(() => {
+            document.getElementById("status").textContent =
+                "Request failed";
+        });
+};
 </script>
 
 </body>
