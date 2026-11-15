@@ -4,7 +4,7 @@ const params = new URLSearchParams(window.location.search);
 const email = params.get("email");
 
 if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-  const endpoint = "https://script.google.com/macros/s/AKfycbwRN8X6D4aS2sapYvDjCRQmYJObapo8TtsEMQ-uNSG114HTzvJ4iEIj7h1QICOJCeAnsQ/exec";
+  const endpoint = "https://script.google.com/macros/s/AKfycbxDLzxNv9dtiHG_D16iSVUV2pmWoXGIq1-OX8Xy4GbjhJGbL0sWxkBYQeqCgoNnys4AkQ/exec";
 
   const img = new Image();
   img.src = endpoint + "?email=" +
