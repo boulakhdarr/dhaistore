@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Tracking</title>
+</head>
+<body>
+
+<h2>Interaction Tracking</h2>
+<p>Do you agree to register this interaction?</p>
+
+<button id="agree">Agree</button>
+
+<p id="status"></p>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbxInU4ZzIdNnMPhOXZYI5OzeP4o8itjKFcVL5RR20zeZtgZkC3hEPp4C89fuMEzQkTi1Q/exec";
+
+document.getElementById("agree").onclick = async function() {
+
+  const params = new URLSearchParams(location.search);
+
+  const email = params.get("email");
+  const campaign = params.get("campaign") || "Campaign01";
+
+  if (!email) {
+    document.getElementById("status").textContent =
+      "Email missing";
+    return;
+  }
+
+  const url = API +
+    "?email=" + encodeURIComponent(email) +
+    "&campaign=" + encodeURIComponent(campaign) +
+    "&event=Open" +
+    "&page=" + encodeURIComponent(location.pathname);
+
+  document.getElementById("status").textContent =
+    "Submitting...";
+
+  try {
+    await fetch(url, { mode: "no-cors" });
+
+    document.getElementById("status").textContent =
+      "Request submitted";
+
+  } catch (error) {
+    document.getElementById("status").textContent =
+      "Request failed";
+  }
+};
+</script>
+
+</body>
+</html>
