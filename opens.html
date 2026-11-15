@@ -1,1 +1,50 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Email Campaign</title>
+</head>
+<body>
+
+<h2>Email Campaign</h2>
+
+<p>Allow campaign interaction measurement?</p>
+
+<button onclick="recordOpen()">Continue</button>
+
+<p id="status"></p>
+
+<script>
+const endpoint = "https://script.google.com/macros/s/AKfycbz8KSXL4Y5xHZyTPF7oMhjvFl9CU6fRnC6eZZwDVozbV5iLYRM0xnTqZk6tb9G3V03cmg/exec";
+
+async function recordOpen() {
+    const params = new URLSearchParams(location.search);
+    const email = params.get("email");
+    const campaign = params.get("campaign") || "Campaign01";
+
+    if (!email) {
+        document.getElementById("status").textContent =
+            "Email parameter missing";
+        return;
+    }
+
+    const url = endpoint +
+        "?email=" + encodeURIComponent(email) +
+        "&campaign=" + encodeURIComponent(campaign);
+
+    try {
+        const response = await fetch(url);
+        document.getElementById("status").textContent =
+            "Measurement event submitted.";
+    } catch (error) {
+        document.getElementById("status").textContent =
+            "Could not submit event.";
+    }
+}
+</script>
+
+</body>
+</html>
